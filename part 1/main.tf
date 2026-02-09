@@ -26,7 +26,7 @@ resource "local_file" "all_fruits" {
 # }
 
 # # Create fruits which result from merging local.fruits with var.fruits
-resource "local_file" "all_fruits" {
+resource "local_file" "all_matching_fruits" {
   for_each = local.merged_fruits
   content  = "Color = ${each.value.color} and weight = ${each.value.weight_in_kg}" 
   filename = each.key
