@@ -2,26 +2,28 @@ run "default_greeting" {
   # By default, terraform test uses the parent directory as the source,
   # so we don't need to specify "source" explicitly for root-module tests.
 
+  # Content and filename are known at plan time, so no real file is written
+  command = plan
+
   # Use the module with default variables, then assert on the outputs
   assert {
-    condition     = output.greeting_content == "Hello, Terraform!"
-    error_message = "Expected default greeting to be 'Hello, Terraform!'"
+    condition     = output.greeting_content == "TODO"
+    error_message = "TODO: describe what went wrong"
   }
 }
 
 run "custom_greeting" {
+  command = plan
+
   # Override the greeting variable for this run
   variables {
-    greeting = "Hi from test!"
   }
 
   assert {
-    condition     = output.greeting_content == "Hi from test!"
-    error_message = "Expected greeting_content to match the custom greeting"
+    condition     = output.greeting_content == "TODO"
+    error_message = "TODO: describe what went wrong"
   }
 
-  assert {
-    condition     = can(regex(".*/greeting.txt$", output.greeting_file_path))
-    error_message = "Expected greeting_file_path to end with 'greeting.txt'"
-  }
+  # Bonus: assert that the file path ends in greeting.txt
 }
+

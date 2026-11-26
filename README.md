@@ -93,6 +93,13 @@ terraform apply -var 'greeting=Hi there'
 terraform output greeting_content
 ```
 
+Then write the tests in `tests/local_test.tftest.hcl` and run them:
+
+```sh
+terraform test                              # runs tests/ (your work)
+terraform test -test-directory=solution     # the reference solution
+```
+
 ## Cleaning up
 
 Parts 1, 2 and 5 write files (`foo.bar`, one file per fruit, `greeting.txt`) and a local
